@@ -2,6 +2,10 @@
 
 Counting down to Christmas:christmas_tree: the hacker way in Python:snake:.
 
+Usage: ``python3 DAY_NUM.py [INPUT_FILE]``
+
+If no input file is specified, the scripts will read from stdin. I've included my inputs in the inputs directory as well.
+
 ## Completion Status ##
 
 | Day  | Part 1 | Part 2 |
