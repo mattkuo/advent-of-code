@@ -1,36 +1,47 @@
 import inputgetter
-# import Set
 
 class Santa():
     def __init__(self):
         self.x, self.y = 0, 0
+        self.rx, self.ry = 0, 0
         self.visited = set()
         self.visited.add((self.x, self.y))
         self.houses_delivered = 1
 
     def deliver_presents(self, instructions):
         for instruct in instructions:
-            self._move(instruct)
+            self.x, self.y = self._move(instruct, self.x, self.y)
 
         return self.houses_delivered
 
+    def deliver_presents_with_robot(self, instructions):
+        for i, instruct in enumerate(instructions):
+            if i % 2 == 0:
+                self.x, self.y = self._move(instruct, self.x, self.y)
+            else:
+                self.rx, self.ry = self._move(instruct, self.rx, self.ry)
 
-    def _move(self, instruction):
+        return self.houses_delivered
+
+    def _move(self, instruction, x, y):
         if instruction == '^':
-            self.y += 1
+            y += 1
         elif instruction == '<':
-            self.x -= 1
+            x -= 1
         elif instruction == 'v':
-            self.y -= 1
+            y -= 1
         elif instruction == '>':
-            self.x += 1
+            x += 1
 
-        if (self.x, self.y) not in self.visited:
+        if (x, y) not in self.visited:
             self.houses_delivered += 1
-            self.visited.add((self.x, self.y))
+            self.visited.add((x, y))
 
+        return x, y
 
 if __name__ == '__main__':
     directions = inputgetter.get_input()
     result = Santa().deliver_presents(directions)
-    print("Houses receiving at least 1 present: {}".format(result))
+    with_robo = Santa().deliver_presents_with_robot(directions)
+    print("# Houses receiving presents: {}".format(result))
+    print("# Houses receiving presents with robo: {}".format(with_robo))
