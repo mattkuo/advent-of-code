@@ -8,7 +8,7 @@ Counting down to Christmas:christmas_tree: the hacker way in Python:snake:.
 | :--: | :----: | :----: |
 |  1   |:santa: |:santa: |
 |  2   |:santa: |:santa: |
-|  3   |        |        |
+|  3   |:santa: |        |
 |  4   |        |        |
 |  5   |        |        |
 |  6   |        |        |
