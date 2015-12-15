@@ -16,15 +16,19 @@ class Instruction(object):
 			self.endx, 
 			self.endy)
 	
-	def perform_inst(self, grid):
+	def perform_inst(self, grid, grid2):
 		for x in range(self.startx, self.endx + 1):
 			for y in range(self.starty, self.endy + 1):
 				if self.inst_type == InstructionType.off:
 					grid[x][y] = False
+					grid2[x][y] -= 1 if grid2[x][y] > 0 else 0
 				elif self.inst_type == InstructionType.on:
 					grid[x][y] = True
+					grid2[x][y] += 1
 				else:
 					grid[x][y] = not grid[x][y]
+					grid2[x][y] += 2
+					
 
 class InstructionType(Enum):
 	off = 0
@@ -55,14 +59,14 @@ def get_next_instruction(instructions):
 if __name__ == '__main__':
 	gen = inputgetter.get_input(gen=True)
 	
-	grid = [[False for _ in range(1000)] for _ in range(1000)]
+	grid = [[False] * 1000 for _ in range(1000)]
+	grid2 = [[0] * 1000 for _ in range(1000)]
 	
 	for inst in get_next_instruction(gen):
-		inst.perform_inst(grid)
+		inst.perform_inst(grid, grid2)
 		
-	count = 0
-	
-	for row in grid:
-		count += row.count(True)
+	count = sum(sum(row) for row in grid)
+	count2 = sum(sum(row) for row in grid2)
 		
 	print("Number of lights lit: {}".format(count))
+	print("Total Brightness: {}".format(count2))
