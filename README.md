@@ -16,7 +16,7 @@ If no input file is specified, the scripts will read from stdin. I've included m
 |  4   |:santa: |:santa: |
 |  5   |:santa: |:santa: |
 |  6   |:santa: |:santa: |
-|  7   |:santa: |        |
+|  7   |:santa: |:santa: |
 |  8   |        |        |
 |  9   |        |        |
 |  10  |        |        |

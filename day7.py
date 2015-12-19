@@ -65,7 +65,16 @@ def main():
         gate = Gate(line.strip())
         Gate.gates[gate.name] = gate
 
-    print("Value of a is: {}".format(Gate.get_val('a')))
+    a_val = Gate.get_val('a')
+    print("Value of a is: {}".format(a_val))
+
+    for key in Gate.gates:
+        Gate.gates[key].value = None
+
+    Gate.gates['b'].value = a_val
+
+    print("Value of a after rewiring b is: {}".format(Gate.get_val('a')))
+
 
 if __name__ == '__main__':
     main()
